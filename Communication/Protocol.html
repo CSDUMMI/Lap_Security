@@ -1,0 +1,418 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.2.7.2 (Linux)"/>
+	<meta name="created" content="2019-04-10T12:48:29.975283218"/>
+	<meta name="changed" content="2019-04-10T13:25:06.535507860"/>
+	<style type="text/css">
+		@page { margin: 2cm }
+		p { margin-bottom: 0.25cm; line-height: 120% }
+		td p { margin-bottom: 0cm }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="de-DE" dir="ltr">
+<p align="center" style="margin-top: 0.42cm; margin-bottom: 0.21cm; line-height: 100%; page-break-after: avoid">
+<font face="FreeMono"><font size="6" style="font-size: 28pt"><b>Protocol
+for the Communication<font size="6" style="font-size: 28pt"> </font><font size="6" style="font-size: 28pt">of
+the Raspberry PI and Arduinos in the Lap_Security Project</font></b></font></font></p>
+<p style="font-weight: normal"><br/>
+<br/>
+
+</p>
+<p><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>IDs
+for the different types of Arduinos</b></font></font></p>
+<p><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>in
+the Network:</b></font></font></p>
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="128*">
+	<col width="128*">
+	<tr valign="top">
+		<td width="50%" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">Name</font></font></p>
+		</td>
+		<td width="50%" style="border: 1px solid #000000; padding: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">Code</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">Auth</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">0</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">Servo</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">1</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">Output</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">2</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">Server</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">3</font></font></p>
+		</td>
+	</tr>
+</table>
+<p><br/>
+<br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>A
+sample Packet on the Network:</b></font></font></p>
+<table width="643" cellpadding="4" cellspacing="0">
+	<col width="59">
+	<col width="75">
+	<col width="136">
+	<col width="339">
+	<tr valign="top">
+		<td width="59" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">ID</font></font></p>
+		</td>
+		<td width="75" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">TYPE</font></font></p>
+		</td>
+		<td width="136" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">SIZE</font></font></p>
+		</td>
+		<td width="339" style="border: 1px solid #000000; padding: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">PAYLOAD</font></font></p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="128*">
+	<col width="128*">
+	<tr valign="top">
+		<td width="50%" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">ID</font></font></p>
+		</td>
+		<td width="50%" style="border: 1px solid #000000; padding: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">1
+			Byte</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">TYPE</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">1
+			Byte</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">SIZE</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">4
+			Bytes</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">PAYLOAD</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">SIZE
+			Bytes</font></font></p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>TYPE
+describes how to parse the PAYLOAD,</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>these
+are the possible TYPE Values:</b></font></font></p>
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="128*">
+	<col width="128*">
+	<tr valign="top">
+		<td width="50%" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">TYPE</font></font></p>
+		</td>
+		<td width="50%" style="border: 1px solid #000000; padding: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">Describition</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">0</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">RESPONSE</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">1</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">TIME</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">2</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">UNLOCKED</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">3</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">UNLOCK</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">4</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">SHOW</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">5</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">BEEP</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><br/>
+
+			</p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><br/>
+
+			</p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>TYPE
+0: RESPONSE</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>RESPONSE
+to an REQUEST, mostly to the TIME REQUEST. PAYLOAD:<br/>
+</b></font></font><br/>
+
+</p>
+<table width="643" cellpadding="4" cellspacing="0">
+	<col width="67">
+	<col width="558">
+	<tr valign="top">
+		<td width="67" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">TYPE</font></font></p>
+		</td>
+		<td width="558" style="border: 1px solid #000000; padding: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">RESPONSE-PAYLOAD</font></font></p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>SIZES:</b></font></font></p>
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="128*">
+	<col width="128*">
+	<tr valign="top">
+		<td width="50%" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">TYPE</font></font></p>
+		</td>
+		<td width="50%" style="border: 1px solid #000000; padding: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">1B</font></font></p>
+		</td>
+	</tr>
+	<tr valign="top">
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">RESPONSE-PAYLOAD</font></font></p>
+		</td>
+		<td width="50%" style="border-top: none; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000; padding-top: 0cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">SIZE-1</font></font></p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>The
+is the TYPE of the REQUEST to this RESPONSE.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>The
+RESPONSE-PAYLOAD is the data for the REQUEST.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>TYPE
+1. TIME</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>TIME
+requests the current time of day, in hours. PAYLOAD is empty and SIZE
+0.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>It
+gets an RESPONSE with the followin RESPONSE-PAYLOAD:</b></font></font></p>
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="256*">
+	<tr>
+		<td width="100%" valign="top" style="border: 1px solid #000000; padding: 0.1cm">
+			<p align="center"><font face="FreeMono"><font size="5" style="font-size: 18pt">HOUR</font></font></p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>HOUR
+is one Byte and just a number between 0  and 23.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>TYPE
+2: UNLOCKED</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>Only
+accepted if send by the AUTH Arduino.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>It‘s
+PAYLOAD:</b></font></font></p>
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="128*">
+	<col width="128*">
+	<tr valign="top">
+		<td width="50%" style="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: none; padding-top: 0.1cm; padding-bottom: 0.1cm; padding-left: 0.1cm; padding-right: 0cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">AUTH-ID</font></font></p>
+		</td>
+		<td width="50%" style="border: 1px solid #000000; padding: 0.1cm">
+			<p><font face="FreeMono"><font size="5" style="font-size: 18pt">TIME</font></font></p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>AUTH-ID
+is the Number with wich the system was unlocked and is a uint of size
+4 Bytes.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>The
+TIME is a field with SIZE 1 Byte and holds a number between 0-23,
+defining the hour the system was unlocked.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>If
+this is sent to the Raspberry Pi that in turn will sent UNLOCK
+Command to the Servo Arduino.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>TYPE
+3: UNLOCK</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>Sent
+by the Node withe Raspberry PI ID to th e Node with the Servo ID that
+is then unlocking the system.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>PAYLOAD
+is empty and SIZE 0.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b><br/>
+TYPE
+4: SHOW</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>Sents
+a String of ASCII Characters to be printed to the Screen.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>PAYLOAD:</b></font></font></p>
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="256*">
+	<tr>
+		<td width="100%" valign="top" style="border: 1px solid #000000; padding: 0.1cm">
+			<p align="center"><font face="FreeMono"><font size="5" style="font-size: 18pt">STRING</font></font></p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>The
+STRING can be of variable SIZE and its</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>maximum
+length is the maximum of the SIZE Field.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>TYPE
+5: BEEP</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>If
+this Command is sent to the Output Node that Node will activate the
+Buzzer for a certain time.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>PAYLOAD:</b></font></font></p>
+<table width="100%" cellpadding="4" cellspacing="0">
+	<col width="256*">
+	<tr>
+		<td width="100%" valign="top" style="border: 1px solid #000000; padding: 0.1cm">
+			<p align="center"><font face="FreeMono"><font size="5" style="font-size: 18pt">TIME</font></font></p>
+		</td>
+	</tr>
+</table>
+<p style="margin-bottom: 0cm; line-height: 100%"><font face="FreeMono"><font size="5" style="font-size: 18pt"><b>TIME
+is a 4 Byte number, it defines how many miliseconds the Buzzer shall
+be on.</b></font></font></p>
+<p style="margin-bottom: 0cm; line-height: 100%"><br/>
+
+</p>
+</body>
+</html>
